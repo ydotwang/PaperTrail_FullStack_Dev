@@ -16,6 +16,14 @@ export const Logo = () => {
                 height="50"
                 width="50"
                 alt="Logo1"
+                className="dark:hidden"
+            />
+            <Image 
+                src="/Logo1.svg"
+                height="50"
+                width="50"
+                alt="Logo1"
+                className="hidden dark:block"
             />
             <p className = {cn("font-semibold", font.className)}>
                 PaperTrail

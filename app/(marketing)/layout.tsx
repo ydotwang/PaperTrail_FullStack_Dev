@@ -1,3 +1,4 @@
+
 import { Navbar } from "./_components/navbar";
 
 const MarketingLayout = ({ 
@@ -6,7 +7,7 @@ const MarketingLayout = ({
     children: React.ReactNode;
 }) => {
     return (
-        <div className  = "h-Full">
+        <div className  = "h-Full dark:bg-[#1F1F2F]">
             <Navbar/>
             <main className = "h-full pt-40">
                 {children}
@@ -16,4 +17,6 @@ const MarketingLayout = ({
 }
 
 export default MarketingLayout;
+
+
 
