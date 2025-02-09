@@ -1,17 +1,25 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, ChevronsRight, MenuIcon } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useCallback, useEffect, useRef } from "react";
 import { useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { UserItem } from "./user-items";
+import { api } from "@/convex/_generated/api";
+import { useMutation, useQuery } from "convex/react";
+import { Item } from "./item";
+import { toast } from "sonner";
+import { DocumentList } from "./document-list";
+
 
 
 export const Navigation = () => {
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
+    const create = useMutation(api.documents.create);
+
     
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -93,6 +101,17 @@ export const Navigation = () => {
         }
     }, [pathname, isMobile]);
 
+    const handleCreate = () => {
+        const promise = create({
+            title: "Untitled",
+        });
+        toast.promise(promise, {
+            loading: "Creating document...",
+            success: "Document created!",
+            error: "Failed to create document"
+        });
+    }
+
 
     return (
         <>
@@ -100,7 +119,8 @@ export const Navigation = () => {
             "group/sidebar h-full bg-background overflow-y-auto relative flex w-60 flex-col z-[99999]",
             isResetting && "transition-all ease-in-out duration-300",
             isMobile && "w-0",
-            "dark:bg-[#3F3F4F]"
+            "dark:bg-[#3F3F4F]",
+            "bg-[#F5F5F5]"
         )}>
             <div
             onClick={collapse}
@@ -113,10 +133,27 @@ export const Navigation = () => {
             </div>
             <div>
                 <UserItem/>
+                <Item
+                label="Search"
+                icon={Search}
+                isSearch
+                onClick={() => {}}
+                />
+                
+                <Item
+                label="Settings"
+                icon={Settings}
+                onClick={() => {}}
+                />
 
+                <Item 
+                onClick={handleCreate}
+                label="New Document"
+                icon={PlusCircle}
+                />
             </div>  
             <div className="mt-4">
-                <p>Documents</p>
+                <DocumentList/>
             </div>
 
             <div
