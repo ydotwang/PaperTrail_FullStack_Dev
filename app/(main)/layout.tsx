@@ -1,11 +1,13 @@
 "use client";
-import { Spinner } from "@/components/spinner";
-import { Navbar } from "./_components/navbar";
-import { redirect } from "next/navigation";
-import { useConvexAuth } from "convex/react";
 
-const MarketingLayout = ({ 
-    children 
+import { useConvexAuth } from "convex/react";
+import { Spinner } from "@/components/spinner";
+import { redirect } from "next/navigation";
+
+import { Navigation } from "./_components/navigation";
+
+const MainLayout = ({
+    children
 }: {
     children: React.ReactNode;
 }) => {
@@ -18,20 +20,19 @@ const MarketingLayout = ({
             </div>
         );
     }
-    // if (!isAuthenticated) {
-    //     return redirect("/");
-    // }
+
+    if (!isAuthenticated) {
+        return redirect("/");
+    }
+
     return (
-        <div className="h-Full flex dark:bg-[#1F1F2F]">
-            <Navbar/>
-            <main className="h-full flex-1 overflow-y-auto">
+        <div className="h-full dark:bg-[#2F2F3F] flex">
+            <Navigation />
+            <main className="flex-1 h-full overflow-y-auto">
                 {children}
             </main>
         </div>
     );
 }
 
-export default MarketingLayout;
-
-
-
+export default MainLayout;

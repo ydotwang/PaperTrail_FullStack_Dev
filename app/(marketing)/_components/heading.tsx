@@ -33,9 +33,11 @@ export const Heading = () => {
                 </Button>
             )}
             {!isAuthenticated && !isLoading && (
-                <SignInButton>
-                    Get PaperTrail free
-                    <ArrowRight className = "h-4 w-4 ml-2" size = {24} />
+                <SignInButton mode="modal">
+                    <Button>
+                        Get PaperTrail free
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                    </Button>
                 </SignInButton>
             )}
             

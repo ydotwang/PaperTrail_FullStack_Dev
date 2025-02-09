@@ -14,27 +14,25 @@ export const Navbar = () => {
     const { isAuthenticated, isLoading } = useConvexAuth();
     const scrolled = useScrollTop();
     return(
-        <div className = {cn(
-            "z-50 g-background fixed top-0 flex items-center w-full p-6 backdrop-blur-md", 
-            scrolled && "border-b shadow-sm",
-            "dark:bg-[rgba(31,31,47,0.8)]",
-            "bg-[rgba(255,255,255,0.8)]"
+        <div className={cn(
+            "z-50 fixed top-0 flex items-center w-full p-6", 
+            scrolled && "border-b shadow-sm bg-[rgba(255,255,255,0.8)] dark:bg-[rgba(31,31,47,0.8)]"
         )}>
             <Logo/>
-            <div className = "md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
+            <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
                 {isLoading && (
                    <Spinner />
                 )}
                 {!isAuthenticated && !isLoading && (
                     <>
-                    <SignInButton mode = "modal">
-                        <Button variant = "ghost" size = "sm">
+                    <SignInButton mode="modal">
+                        <Button variant="ghost" size="sm">
                             Log in
                         </Button>
                     </SignInButton>
 
-                    <SignInButton mode = "modal">
-                        <Button variant = "ghost" size = "sm">
+                    <SignInButton mode="modal">
+                        <Button size="sm">
                             Get PaperTrail free
                         </Button>
                     </SignInButton>

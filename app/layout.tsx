@@ -4,6 +4,7 @@ import "./globals.css";
 import { url } from "inspector";
 import { ThemeProvider } from "../components/providers/theme-provider";
 import { ConvexClientProvider } from '@/components/providers/convex-provider'
+import { Toaster } from "sonner";
 
 
 const geistSans = localFont({
@@ -53,6 +54,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
             storageKey="papertrail-theme">
+              <Toaster position="bottom-center"/>
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

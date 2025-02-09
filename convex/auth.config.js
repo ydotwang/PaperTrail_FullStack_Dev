@@ -1,8 +1,9 @@
 export default {
     providers: [
       {
-        domain: "https://intimate-cattle-43.clerk.accounts.dev",
+        domain: "nice-goshawk-24.clerk.accounts.dev",
         applicationID: "convex",
+        development: process.env.NODE_ENV === "development"
       },
     ]
   };
