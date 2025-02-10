@@ -1,7 +1,9 @@
 "use client";
 
+import { Plus } from "lucide-react";
+
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, ChevronsRight, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, MenuIcon, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useCallback, useEffect, useRef } from "react";
 import { useState } from "react";
@@ -12,6 +14,9 @@ import { useMutation, useQuery } from "convex/react";
 import { Item } from "./item";
 import { toast } from "sonner";
 import { DocumentList } from "./document-list";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { TrashBox } from "./trash-box";
+import { useSearch } from "@/hooks/use-search";
 
 
 
@@ -19,6 +24,7 @@ export const Navigation = () => {
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const create = useMutation(api.documents.create);
+    const search = useSearch();
 
     
     const isResizingRef = useRef(false);
@@ -137,7 +143,7 @@ export const Navigation = () => {
                 label="Search"
                 icon={Search}
                 isSearch
-                onClick={() => {}}
+                onClick={search.onOpen}
                 />
                 
                 <Item
@@ -154,6 +160,22 @@ export const Navigation = () => {
             </div>  
             <div className="mt-4">
                 <DocumentList/>
+                <Item
+                label="Add a page"
+                icon={PlusCircle}
+                onClick={handleCreate}
+                />
+                <Popover>
+                    <PopoverTrigger>
+                        <Item label="Trash" icon={Trash}/>
+                    </PopoverTrigger>
+                    <PopoverContent
+                    className="p-0 w-72"
+                    side = {isMobile ? "right" : "bottom"}
+                    >
+                        <TrashBox/>
+                    </PopoverContent>
+                </Popover>
             </div>
 
             <div
