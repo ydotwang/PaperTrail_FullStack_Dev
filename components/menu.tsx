@@ -29,8 +29,8 @@ export const Menu = ({ documentId }: MenuProps) => {
   const onArchive = () => {
     const promise = archive({ id: documentId });
     toast.promise(promise, {
-      loading: "Moving to trash...",
-      success: "Note moved to trash!",
+      loading: "Moving trail to trash...",
+      success: "Trail moved to trash ^o^!",
       error: "Failed to archive note.",
     });
     router.push("/documents");
