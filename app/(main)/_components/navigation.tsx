@@ -17,6 +17,7 @@ import { DocumentList } from "./document-list";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { TrashBox } from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 
 
@@ -25,7 +26,7 @@ export const Navigation = () => {
     const isMobile = useMediaQuery("(max-width: 768px)");
     const create = useMutation(api.documents.create);
     const search = useSearch();
-
+    const settings = useSettings();
     
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -149,7 +150,7 @@ export const Navigation = () => {
                 <Item
                 label="Settings"
                 icon={Settings}
-                onClick={() => {}}
+                onClick={settings.onOpen}
                 />
 
                 <Item 
