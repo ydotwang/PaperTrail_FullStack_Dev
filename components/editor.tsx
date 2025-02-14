@@ -28,15 +28,13 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
     uploadFile: handleUpload,
   });
 
-  
-
   return (
     <div>
       <BlockNoteView
-        editable={editable}
+        editable={editable !== false}
         editor={editor}
         onChange={() => {
-          JSON.stringify(editor.document, null, 2);
+          onChange(JSON.stringify(editor.document));
         }}
         theme={resolvedTheme === "dark" ? "dark" : "light"}
       />
