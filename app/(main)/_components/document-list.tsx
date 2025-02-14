@@ -66,8 +66,8 @@ export const DocumentList = ({
         <div key={document._id}>
           <Item
             id={document._id}
-            label={document.title}
             onClick={() => onRedirect(document._id)}
+            label={document.title}
             icon={FileIcon}
             documentIcon={document.icon}
             active={params.documentId === document._id}
@@ -76,7 +76,10 @@ export const DocumentList = ({
             expanded={expanded[document._id]}
           />
           {expanded[document._id] && (
-            <DocumentList parentDocumentId={document._id} level={level + 1} />
+            <DocumentList
+              parentDocumentId={document._id}
+              level={level + 1}
+            />
           )}
         </div>
       ))}

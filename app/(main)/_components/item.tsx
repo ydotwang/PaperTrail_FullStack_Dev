@@ -49,8 +49,8 @@ export const Item = ({
         const promise = archive({id});
         toast.promise(promise, {
             loading: "Moving to trash...",
-            success: "Note moved to trash!",
-            error: "Failed to move note to trash"
+            success: "Trail moved to trash!",
+            error: "Failed to move trail to trash"
         });
     }
     const handleExpand = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -69,12 +69,12 @@ export const Item = ({
             if (!expanded) {
                 onExpand?.();
             }
-            // router.push(`/documents/${documentId}`);
+            router.push(`/documents/${documentId}`);
         });
         toast.promise(promise, {
-            loading: "Creating new note...",
-            success: "New note created!",
-            error: "Failed to create note"
+            loading: "Creating new trail...",
+            success: "New trail created!",
+            error: "Failed to create trail"
         });
     }
 
@@ -104,7 +104,7 @@ export const Item = ({
                 </div>
             ) : (
                 <Icon
-            className="shrink-0 h-[18px] mr-2 text-muted-foreground"
+            className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground"
             />
             )}
             <span>
@@ -145,12 +145,12 @@ export const Item = ({
                                 <Trash
                                 className="h-4 w-4 mr-2"
                                 />
-                                Delete
+                                Delete Trail
                             </DropdownMenuItem>
                             <DropdownMenuSeparator
                             />
                             <div className="text-xs text-muted-foreground p-2">
-                                Last edited by: {user?.user?.fullName}
+                                Last edited by: {user?.user?.firstName} {user?.user?.lastName}
                             </div>
                         </DropdownMenuContent>
                     </DropdownMenu>

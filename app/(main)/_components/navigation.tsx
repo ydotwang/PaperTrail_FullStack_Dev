@@ -4,7 +4,7 @@ import { Plus } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ChevronsLeft, ChevronsRight, MenuIcon, PlusCircle, Search, Settings, Trash } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useCallback, useEffect, useRef } from "react";
 import { useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -23,6 +23,7 @@ import { Navbar } from "./navbar";
 
 
 export const Navigation = () => {
+    const router = useRouter();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const create = useMutation(api.documents.create);
@@ -112,12 +113,14 @@ export const Navigation = () => {
 
     const handleCreate = () => {
         const promise = create({
-            title: "Untitled",
+            title: "Untitled", 
+        }).then((documentId) => {
+            router.push(`/documents/${documentId}`);
         });
         toast.promise(promise, {
-            loading: "Creating document...",
-            success: "Document created!",
-            error: "Failed to create document"
+            loading: "Creating new trail...",
+            success: "Trail created!",
+            error: "Failed to create trail"
         });
     }
 

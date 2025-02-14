@@ -8,17 +8,21 @@ import { Plus, PlusCircle } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const DocumentsPage = () => {
     const { user } = useUser();
+    const router = useRouter();
     const create = useMutation(api.documents.create);
 
     const onCreate = () => {
-        const promise = create({ title: "Untitled" });
+        const promise = create({ title: "Untitled" }).then((documentId) => {
+            router.push(`/documents/${documentId}`);
+        });
         toast.promise(promise, {
-            loading: "Creating document...",
-            success: "Document created!",
-            error: "Failed to create document",
+            loading: "Creating new trail...",
+            success: "Trail created!",
+            error: "Failed to create trail",
         });
     };
 
@@ -43,7 +47,7 @@ const DocumentsPage = () => {
             </h2>
             <Button onClick={onCreate}>
                 <PlusCircle className="w-4 h-4 mr-2" />
-                Create a new document
+                Create a new trail
             </Button>
         </div>
     )

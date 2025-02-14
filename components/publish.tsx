@@ -35,9 +35,9 @@ export const Publish = ({ initialData }: PublishProps) => {
     );
 
     toast.promise(promise, {
-      loading: "Publishing...",
-      success: "Note published",
-      error: "Failed to publish note.",
+      loading: "Publishing trail...",
+      success: "Trail published!",
+      error: "Failed to publish trail.",
     });
   };
 
@@ -49,9 +49,9 @@ export const Publish = ({ initialData }: PublishProps) => {
     );
 
     toast.promise(promise, {
-      loading: "Unpublishing...",
-      success: "Note unpublished",
-      error: "Failed to unpublish note.",
+      loading: "Unpublishing trail...",
+      success: "Trail unpublished!",
+      error: "Failed to unpublish trail.",
     });
   };
 
@@ -68,7 +68,7 @@ export const Publish = ({ initialData }: PublishProps) => {
     <Popover>
       <PopoverTrigger asChild>
         <Button size="sm" variant="ghost">
-          Publish{" "}
+          Share with friends {" "}
           {initialData.isPublished && (
             <Globe className="text-sky-500 w-4 h-4 ml-2" />
           )}
@@ -80,7 +80,7 @@ export const Publish = ({ initialData }: PublishProps) => {
             <div className="flex items-center gap-x-2">
               <Globe className="text-sky-500 animate-pulse h-4 w-4" />
               <p className="text-xs font-medium text-sky-500">
-                This note is live on web.
+                This trail is live on web.
               </p>
             </div>
             <div className="flex items-center">
@@ -107,15 +107,15 @@ export const Publish = ({ initialData }: PublishProps) => {
               disabled={isSubmitting}
               onClick={onUnpublish}
             >
-              Unpublish
+              Unshare
             </Button>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center p-2">
             <Globe className="h-8 w-8 text-muted-foreground mb-2" />
-            <p className="text-sm font-medium mb-2">Publish this note</p>
+            <p className="text-sm font-medium mb-2">Publish this trail</p>
             <span className="text-xs text-muted-foreground mb-4">
-              Share your work with others.
+              Share your trail with others.
             </span>
             <Button
               disabled={isSubmitting}
