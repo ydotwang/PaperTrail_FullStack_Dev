@@ -24,9 +24,9 @@ export const DocumentList = ({
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   const onExpand = (documentId: string) => {
-    setExpanded((prevExpand) => ({
-      ...prevExpand,
-      [documentId]: !prevExpand[documentId],
+    setExpanded((prevExpanded) => ({
+      ...prevExpanded,
+      [documentId]: !prevExpanded[documentId],
     }));
   };
 
@@ -37,6 +37,7 @@ export const DocumentList = ({
   const onRedirect = (documentId: string) => {
     router.push(`/documents/${documentId}`);
   };
+
   if (documents === undefined) {
     return (
       <>
@@ -50,6 +51,7 @@ export const DocumentList = ({
       </>
     );
   }
+
   return (
     <>
       <p
